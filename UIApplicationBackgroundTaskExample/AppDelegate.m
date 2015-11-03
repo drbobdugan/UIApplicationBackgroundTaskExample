@@ -95,6 +95,8 @@
     [BackgroundTimeRemainingUtility NSLog];
 }
 
+// Modified from: http://forum.codecall.net/topic/64845-finding-primes-faster-sieve-of-eratosthenes
+
 -(void) sievePrimes
 {
     for (int i=2; i<MAX_NUMBER; i++) // for all elements in array

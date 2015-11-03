@@ -14,14 +14,25 @@
 
 @implementation ViewController
 
+//
+// From UIViewController
+//
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
+//
+// From UIViewController
+//
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+//
+// From UIViewController
+//
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
 @end
+

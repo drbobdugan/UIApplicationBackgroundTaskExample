@@ -13,6 +13,7 @@
 		282A76E51BE92E26002F7891 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282A76E31BE92E26002F7891 /* Main.storyboard */; };
 		282A76E71BE92E26002F7891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282A76E61BE92E26002F7891 /* Assets.xcassets */; };
 		282A76EA1BE92E26002F7891 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282A76E81BE92E26002F7891 /* LaunchScreen.storyboard */; };
+		282A76F31BE92E93002F7891 /* BackgroundTimeRemainingUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A76F21BE92E93002F7891 /* BackgroundTimeRemainingUtility.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		282A76E61BE92E26002F7891 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		282A76E91BE92E26002F7891 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		282A76EB1BE92E26002F7891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		282A76F11BE92E8D002F7891 /* BackgroundTimeRemainingUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundTimeRemainingUtility.h; sourceTree = "<group>"; };
+		282A76F21BE92E93002F7891 /* BackgroundTimeRemainingUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTimeRemainingUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				282A76DD1BE92E26002F7891 /* AppDelegate.h */,
 				282A76DE1BE92E26002F7891 /* AppDelegate.m */,
+				282A76F11BE92E8D002F7891 /* BackgroundTimeRemainingUtility.h */,
+				282A76F21BE92E93002F7891 /* BackgroundTimeRemainingUtility.m */,
 				282A76E01BE92E26002F7891 /* ViewController.h */,
 				282A76E11BE92E26002F7891 /* ViewController.m */,
 				282A76E31BE92E26002F7891 /* Main.storyboard */,
@@ -149,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				282A76F31BE92E93002F7891 /* BackgroundTimeRemainingUtility.m in Sources */,
 				282A76E21BE92E26002F7891 /* ViewController.m in Sources */,
 				282A76DF1BE92E26002F7891 /* AppDelegate.m in Sources */,
 				282A76DC1BE92E26002F7891 /* main.m in Sources */,
@@ -264,6 +270,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIApplicationBackgroundTaskExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = stonehill.edu.UIApplicationBackgroundTaskExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -275,6 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIApplicationBackgroundTaskExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = stonehill.edu.UIApplicationBackgroundTaskExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

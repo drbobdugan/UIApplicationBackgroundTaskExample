@@ -40,11 +40,13 @@
      self.bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{
          // Clean up any unfinished task business by marking where you
          // stopped or ending the task outright.
+         [BackgroundTimeRemainingUtility NSLog];
+         
          [application endBackgroundTask:self.bgTask];
          self.bgTask = UIBackgroundTaskInvalid;
-        
          NSLog(@"%s: background task is expiring.", __PRETTY_FUNCTION__);
-         [BackgroundTimeRemainingUtility NSLog];
+         fflush(stderr);
+         
     }];
     
     // Start the long-running task and return immediately.

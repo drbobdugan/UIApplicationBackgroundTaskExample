@@ -52,9 +52,8 @@
         NSLog(@"%s: background task is starting.", __PRETTY_FUNCTION__);
         [BackgroundTimeRemainingUtility NSLog];
         
-        self.primes = calloc(MAX_NUMBER, sizeof(int));
+        // This is a basic computational task that runs forever deliberately to trigger execution of the expiration handler.
         [self sievePrimes];
-        [self printPrimes];
         
         NSLog(@"%s: background task is ending.", __PRETTY_FUNCTION__);
         [BackgroundTimeRemainingUtility NSLog];
@@ -87,57 +86,61 @@
 // Delegate for UIApplicationDelegate
 //
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier
-// Called when application moves from foreground to background and we are downloading a resource
-  completionHandler:(void (^)()) completionHandler {
-    
-    //self.backgroundCompletionHandler = completionHandler;
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    [BackgroundTimeRemainingUtility NSLog];
+    // Called when application moves from foreground to background and we are downloading a resource
+    completionHandler:(void (^)()) completionHandler {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        [BackgroundTimeRemainingUtility NSLog];
 }
 
-// Modified from: http://forum.codecall.net/topic/64845-finding-primes-faster-sieve-of-eratosthenes
 
--(void) sievePrimes
+// Maximum number to process for primes
+// Current value does not generate memory warning on iOS 8.4
+const int MAX_NUMBER=130000000;
+typedef enum {UNINITIALIZED=0, PRIME, NONPRIME} PrimeClassification;
+
+//
+// Objective-C friendly and cleaned up version of prime number calculator using the
+// Sieve of Eratosthenes from:
+// http://forum.codecall.net/topic/64845-finding-primes-faster-sieve-of-eratosthenes
+//
+// Returns an array of enums, where array[i] indicates that the number i is NONPRIME or
+// PRIME
+//
+// This is a basic sieve implementation, some easy algorithmic improvements would be:
+// - using bit per number
+// - ignoring even numbers
+// however these would reduce clarity.
+//
+-(PrimeClassification *) sievePrimes
 {
-    for (int i=2; i<MAX_NUMBER; i++) // for all elements in array
+    // Create numbers array, default value will be UNINITIALIZED (or zero)
+    PrimeClassification *numbers = calloc(MAX_NUMBER, sizeof(PrimeClassification));
+    
+    while (true) {
+    // Special cases
+    numbers[0]=NONPRIME;
+    numbers[1]=NONPRIME;
+    
+    // Iterate through numbers array identifying PRIMEs
+    for (int i=2; i<MAX_NUMBER; i++)
     {
-        if(self.primes[i] == 0) // it is not multiple of any other prime
-            self.primes[i] = 1; // mark it as prime
-        
-        // mark all multiples of prime selected above as non primes
+        // Encountering UNITIALIZED here means that the number must be PRIME.
+        if (numbers[i] == UNINITIALIZED) numbers[i] = PRIME;
+     
+        // Mark multiples of current number NONPRIME
         int nextMultiple=2;
         int multipleOfPrimeCandidate = i * nextMultiple;
         while (multipleOfPrimeCandidate < MAX_NUMBER)
         {
-            self.primes[multipleOfPrimeCandidate] = -1;
+            numbers[multipleOfPrimeCandidate] = NONPRIME;
             nextMultiple++;
             multipleOfPrimeCandidate = i*nextMultiple;
         }
         
-        if ((i%1000)==0)
-        {
-            printf("%.3fs ",BackgroundTimeRemainingUtility.backgroundTimeRemainingDouble);
-        }
-    }
-    printf("\n");
-}
-
-- (void) printPrimes
-{
-    int nth = 0;
-    for(int i=0; i<MAX_NUMBER; i++)
-    {
-        if(self.primes[i] == 1)
-        {
-            nth++;
-            switch(nth){
-                case 1:  printf("%i st",nth);  break;
-                case 2:  printf("%i nd",nth);  break;
-                case 3:  printf("%i rd",nth);  break;
-                default: printf("%i nth",nth); break;
-            }
-            printf(" prime is %i\n",i);
-        }
-    }
+        // Feedback during processing... it's fun to watch this accelerate during algorithm
+        if ((i%10000)==0) printf(".");
+    }}
+    
+    return numbers;
 }
 @end

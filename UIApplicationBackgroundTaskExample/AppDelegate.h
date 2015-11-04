@@ -8,17 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BackgroundTimeRemainingUtility.h"
-const int MAX_NUMBER=110000000;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) UIBackgroundTaskIdentifier bgTask;
-@property int *primes;
-
-- (void) printPrimes;
-- (void) sievePrimes;
-
 
 @end
 
